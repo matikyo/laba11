@@ -1,0 +1,117 @@
+package laba11;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+    static Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        System.out.println("Введите три стороны треугольника:");
+        int x = sc.nextInt();
+        int y = sc.nextInt();
+        int z = sc.nextInt();
+        Triangle Trinity = new Triangle(x, y, z);
+        System.out.println("Данные треугольника: \n Сторона А: " + Trinity.getA() + "\n Сторона В: " + Trinity.getB() + "\n Сторона С: " + Trinity.getC() + "\n Периметр: " + Trinity.getP() + "\n Площадь: " + Trinity.getS());
+        System.out.println("Введите длину и ширину прямоугольника:");
+        x = sc.nextInt();
+        y = sc.nextInt();
+        Rectangle Rectum = new Rectangle(x, y);
+        System.out.println("Данные прямоугольника: \n Длина: " + Rectum.getA() + "\n Ширина: " + Rectum.getB() + "\n Периметр: " + Rectum.getP() + "\n Площадь: " + Rectum.getS());
+        System.out.println("Введите желаемое кол-во элементов массива:");
+        z = sc.nextInt();
+        Arraykis Spice = new Arraykis(z);
+        int i = 0;
+        while (i < z) {
+            System.out.println("Введите " + (i+1) + "-й элемент массива:");
+            Spice.setValue(sc.nextInt(), i);
+            i++;
+        }
+        System.out.println("Данные массива:");
+        System.out.println(Arrays.toString(Spice.getIntArray()));
+        Spice.sort();
+        System.out.println("Отсортированные данные массива:");
+        System.out.println(Arrays.toString(Spice.getIntArray()));
+    }
+}
+
+class Triangle {
+    private int a;
+    private int b;
+    private int c;
+
+    public Triangle(int a, int b, int c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+
+    public int getA() {
+        return a;
+    }
+
+    public int getB() {
+        return b;
+    }
+
+    public int getC() {
+        return c;
+    }
+
+    public int getP() {
+        return a+b+c;
+    }
+
+    public double getS() {
+        double p = (a+b+c)/2;
+        return Math.sqrt(p*(p-a)*(p-b)*(p-c));
+    }
+}
+
+class Rectangle {
+    private int a;
+    private int b;
+
+    public Rectangle(int a, int b) {
+        this.a = a;
+        this.b = b;
+    }
+
+    public int getA() {
+        return a;
+    }
+
+    public int getB() {
+        return b;
+    }
+
+    public int getP() {
+        return (a+b)*2;
+    }
+
+    public int getS() {
+        return a*b;
+    }
+}
+
+class Arraykis {
+    private int [] intArray;
+    private int n;
+
+    public Arraykis(int n) {
+        this.n = n;
+        this.intArray = new int[n];
+    }
+
+    public void setValue(int i, int n) {
+        intArray[n] = i;
+    }
+
+    public int[] getIntArray() {
+        return intArray;
+    }
+
+    public void sort() {
+        Arrays.sort(intArray);
+    }
+}
